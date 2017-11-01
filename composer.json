@@ -1,0 +1,29 @@
+{
+  "name": "rhubarbphp/module-csrfprotection",
+  "description": "A means to provide token based CSRF protection",
+  "keywords": [    
+    "rhubarb",
+    "php",
+    "framework",
+    "csrf",
+    "protection",
+    "token"
+  ],
+  "homepage": "http://www.rhubarbphp.com/",
+  "license": "Apache-2.0",
+  "autoload": {
+    "psr-4": {
+      "Rhubarb\\Csrf\\": "src/",
+      "Rhubarb\\Csrf\\Tests\\": "tests/unit/"
+    }
+  },
+  "require": {
+    "rhubarbphp/rhubarb": "^1.1.0"
+  },
+  "config": {
+    "bin-dir": "bin/"
+  },
+  "require-dev": {
+    "codeception/codeception": "^2.0.0"    
+  }
+}
