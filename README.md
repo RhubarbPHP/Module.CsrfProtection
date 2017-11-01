@@ -35,7 +35,8 @@ When you output a form tag include the CSRF cookie token:
 
 ```
 $csrfProtector = CsrfProtection::singleton();
-?><input type="hidden" name="<?=CsrfProtection::TOKEN_COOKIE_NAME;?>" value="<?=htmlentities($csrfProtector->getCookie());?>" /><?php
+
+print '<input type="hidden" name="' . CsrfProtection::TOKEN_COOKIE_NAME . '" value="' . htmlentities($csrfProtector->getCookie()) . '" />';
 ```
 
 When handling the post back, validate headers and the cookie:
