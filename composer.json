@@ -18,7 +18,9 @@
     }
   },
   "require": {
-    "rhubarbphp/rhubarb": "^1.1.0"
+    "rhubarbphp/rhubarb": "^1.3.18",
+    "codeception/verify": "^0.4.0",
+    "codeception/specify": "^0.4.6"
   },
   "config": {
     "bin-dir": "bin/"
