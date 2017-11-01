@@ -47,3 +47,7 @@ if ($request->server('REQUEST_METHOD') == 'POST'){
     CsrfProtection::singleton()->validateCookie($request);
 }
 ```
+
+## Handling failures
+
+If validation fails a CsrfViolationException is thrown which should be caught and handled appropriately.
