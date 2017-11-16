@@ -28,7 +28,7 @@ class CsrfSettings extends Settings
              * @var WebRequest $request
              */
             $request = Application::current()->request();
-            $this->domain = $request->host;
+            $this->domain = parse_url($request->host, PHP_URL_HOST);
         }
     }
 }
