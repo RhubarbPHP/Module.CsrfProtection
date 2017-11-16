@@ -31,7 +31,7 @@ class CsrfProtection
 
         $headersValid = false;
 
-        $referrerDomain = $this->getHost($request->header("Referrer", ""));
+        $referrerDomain = $this->getHost($request->header("Referer", ""));
 
         if ($referrerDomain != "") {
             if ($referrerDomain == $settings->domain){
