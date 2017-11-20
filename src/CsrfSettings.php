@@ -33,9 +33,9 @@ class CsrfSettings extends Settings
 
             if ($host){
                 $this->domain = $host;
+            } else {
+                $this->domain = $request->host;
             }
-
-            $this->domain = $host;
         }
     }
 }
