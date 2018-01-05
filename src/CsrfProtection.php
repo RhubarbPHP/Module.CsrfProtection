@@ -93,7 +93,7 @@ class CsrfProtection
 
             $settings = CsrfSettings::singleton();
 
-            HttpResponse::setCookie(self::TOKEN_COOKIE_NAME, $cookie, 0, '/', $settings->domain);
+            HttpResponse::setCookie(self::TOKEN_COOKIE_NAME, $cookie, 0, '/', parse_url($settings->domain, PHP_URL_HOST));
         }
 
         return $this->currentCookie;
@@ -101,6 +101,12 @@ class CsrfProtection
 
     private function getHost($url)
     {
-        return parse_url($url, PHP_URL_HOST);
+        $host = parse_url($url, PHP_URL_HOST);
+        $port = parse_url($url, PHP_URL_PORT);
+        if($port){
+            $host .= ":".$port;
+        }
+
+        return $host;
     }
 }
