@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.0.3
+
+* Added:    Added Port support 
+
 ### 1.0.2   
 
 * Fixed:    Fixed issue where the domain was not being set correctly
