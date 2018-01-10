@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.0.4
+
+* Fixed:    Reversed port support - ports were not considered originally and this change broke sites specifying reference domains without a port.
+
 ### 1.0.3
 
 * Added:    Added Port support 

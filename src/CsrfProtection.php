@@ -102,10 +102,6 @@ class CsrfProtection
     private function getHost($url)
     {
         $host = parse_url($url, PHP_URL_HOST);
-        $port = parse_url($url, PHP_URL_PORT);
-        if($port){
-            $host .= ":".$port;
-        }
 
         return $host;
     }
