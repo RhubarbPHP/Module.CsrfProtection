@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.0.5
+
+* Changed:  Changed the csrf_tk token to be HTTP only
+
 ### 1.0.4
 
 * Fixed:    Reversed port support - ports were not considered originally and this change broke sites specifying reference domains without a port.
