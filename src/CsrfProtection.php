@@ -66,12 +66,14 @@ class CsrfProtection
     public function getCookie()
     {
         $request = Request::current();
+        $settings = CsrfSettings::singleton();
 
         if ($request instanceof WebRequest){
             $existingCookie = $request->cookie(self::TOKEN_COOKIE_NAME, false);
 
             if ($existingCookie){
                 $this->currentCookie = $existingCookie;
+                HttpResponse::setCookie(self::TOKEN_COOKIE_NAME, $existingCookie, 0, '/', parse_url($settings->domain, PHP_URL_HOST), false, true);
             }
         }
 
@@ -91,9 +93,7 @@ class CsrfProtection
 
             $this->currentCookie = $cookie;
 
-            $settings = CsrfSettings::singleton();
-
-            HttpResponse::setCookie(self::TOKEN_COOKIE_NAME, $cookie, 0, '/', parse_url($settings->domain, PHP_URL_HOST));
+            HttpResponse::setCookie(self::TOKEN_COOKIE_NAME, $cookie, 0, '/', parse_url($settings->domain, PHP_URL_HOST), false, true);
         }
 
         return $this->currentCookie;
