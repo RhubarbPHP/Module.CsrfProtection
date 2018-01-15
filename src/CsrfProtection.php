@@ -73,7 +73,6 @@ class CsrfProtection
 
             if ($existingCookie){
                 $this->currentCookie = $existingCookie;
-                HttpResponse::setCookie(self::TOKEN_COOKIE_NAME, $existingCookie, 0, '/', parse_url($settings->domain, PHP_URL_HOST), false, true);
             }
         }
 
