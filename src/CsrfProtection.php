@@ -33,12 +33,14 @@ class CsrfProtection
 
         $referrerDomain = $this->getHost($request->header("Referer", ""));
 
+        $validDomains = is_array($settings->domain) ? $settings->domain : [$settings->domain];
+
         if ($referrerDomain != "") {
-            if ($referrerDomain == $settings->domain){
+            if (in_array($referrerDomain, $validDomains)) {
                 $headersValid = true;
             }
         } else {
-            if ($this->getHost($request->header("Origin")) == $settings->domain) {
+            if (in_array($this->getHost($request->header("Origin")), $validDomains)) {
                 $headersValid = true;
             }
         }
@@ -74,14 +76,15 @@ class CsrfProtection
             if ($existingCookie){
                 $this->currentCookie = $existingCookie;
             }
-        }
-
+        }                
+        
         if (!$this->currentCookie) {
             $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ012345689.;,!$%^&*()-=+";
             $cookie = "";
             for ($x = 0; $x < self::TOKEN_COOKIE_LENGTH; $x++) {
                 $rand = rand(0, strlen($chars) - 1);
                 $char = $chars[$rand];
+
 
                 if (rand(0, 1) == 1) {
                     $char = strtolower($char);
@@ -92,7 +95,12 @@ class CsrfProtection
 
             $this->currentCookie = $cookie;
 
-            HttpResponse::setCookie(self::TOKEN_COOKIE_NAME, $cookie, 0, '/', parse_url($settings->domain, PHP_URL_HOST), false, true);
+            $validDomains = is_array($settings->domain) ? $settings->domain : [$settings->domain];
+
+            
+            foreach($validDomains as $domain){
+                HttpResponse::setCookie(self::TOKEN_COOKIE_NAME, $cookie, 0, '/', parse_url($domain, PHP_URL_HOST), false, true);
+            }
         }
 
         return $this->currentCookie;

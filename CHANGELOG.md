@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.1.0
+
+* Added:    Support for multiple domains by passing an array to $domain
+
 ### 1.0.5
 
 * Changed:  Changed the csrf_tk token to be HTTP only
