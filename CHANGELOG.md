@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### 1.1.1
+
+* Added:    csrf_tk Cookie now sent with secure flag if on SSL.
 ### 1.1.0
 
 * Added:    Support for multiple domains by passing an array to $domain

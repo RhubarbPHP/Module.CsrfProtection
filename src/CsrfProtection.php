@@ -16,7 +16,6 @@ class CsrfProtection
 
     protected function __construct()
     {
-
     }
 
     /**
@@ -45,7 +44,7 @@ class CsrfProtection
             }
         }
 
-        if (!$headersValid){
+        if (!$headersValid) {
             throw new CsrfViolationException();
         }
     }
@@ -70,14 +69,14 @@ class CsrfProtection
         $request = Request::current();
         $settings = CsrfSettings::singleton();
 
-        if ($request instanceof WebRequest){
+        if ($request instanceof WebRequest) {
             $existingCookie = $request->cookie(self::TOKEN_COOKIE_NAME, false);
 
-            if ($existingCookie){
+            if ($existingCookie) {
                 $this->currentCookie = $existingCookie;
             }
-        }                
-        
+        }
+
         if (!$this->currentCookie) {
             $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ012345689.;,!$%^&*()-=+";
             $cookie = "";
@@ -96,10 +95,10 @@ class CsrfProtection
             $this->currentCookie = $cookie;
 
             $validDomains = is_array($settings->domain) ? $settings->domain : [$settings->domain];
+            $onSsl = ($_SERVER["REQUEST_SCHEME"] === "https" || (isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) && $_SERVER["HTTP_X_FORWARDED_PROTO"] === "https"));
 
-            
-            foreach($validDomains as $domain){
-                HttpResponse::setCookie(self::TOKEN_COOKIE_NAME, $cookie, 0, '/', parse_url($domain, PHP_URL_HOST), false, true);
+            foreach ($validDomains as $domain) {
+                HttpResponse::setCookie(self::TOKEN_COOKIE_NAME, $cookie, 0, '/', parse_url($domain, PHP_URL_HOST), $onSsl, true);
             }
         }
 
