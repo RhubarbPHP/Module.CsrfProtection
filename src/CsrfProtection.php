@@ -59,6 +59,13 @@ class CsrfProtection
         }
     }
 
+    public function validateUrlParameterToken(WebRequest $request)
+    {
+        if ($request->get(self::TOKEN_COOKIE_NAME) != $request->cookie(self::TOKEN_COOKIE_NAME)) {
+            throw new CsrfViolationException();
+        }
+    }
+
     private $currentCookie;
 
     /**

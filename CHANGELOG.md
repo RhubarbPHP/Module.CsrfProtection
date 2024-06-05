@@ -1,8 +1,13 @@
 # CHANGELOG
 
+### 1.1.2
+
+* Added:    validateUrlParameterToken method to validate a csrf token URL parameter. Used for GET requests, where there is no form to include the csrf token in.
+
 ### 1.1.1
 
 * Added:    csrf_tk Cookie now sent with secure flag if on SSL.
+
 ### 1.1.0
 
 * Added:    Support for multiple domains by passing an array to $domain
