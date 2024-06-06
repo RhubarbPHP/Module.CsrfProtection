@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### 1.1.3
+
+* Updated:  CSRF cookie to samesite = "strict"
+* Upgraded: rhubarbphp/rhubarb 1.3.17 => 1.7.9 and it's dependencies to allow for samesite attribute to be set on cookies
+
 ### 1.1.2
 
 * Added:    validateUrlParameterToken method to validate a csrf token URL parameter. Used for GET requests, where there is no form to include the csrf token in.

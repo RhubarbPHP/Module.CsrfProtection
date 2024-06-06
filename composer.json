@@ -18,7 +18,7 @@
     }
   },
   "require": {
-    "rhubarbphp/rhubarb": "^1.5.6"
+    "rhubarbphp/rhubarb": "^1.7.9"
   },
   "config": {
     "bin-dir": "bin/"

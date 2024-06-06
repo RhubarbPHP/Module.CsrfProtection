@@ -105,7 +105,7 @@ class CsrfProtection
             $onSsl = ($_SERVER["REQUEST_SCHEME"] === "https" || (isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) && $_SERVER["HTTP_X_FORWARDED_PROTO"] === "https"));
 
             foreach ($validDomains as $domain) {
-                HttpResponse::setCookie(self::TOKEN_COOKIE_NAME, $cookie, 0, '/', parse_url($domain, PHP_URL_HOST), $onSsl, true);
+                HttpResponse::setCookie(self::TOKEN_COOKIE_NAME, $cookie, 0, '/', parse_url($domain, PHP_URL_HOST), $onSsl, true, 'Strict');
             }
         }
 
